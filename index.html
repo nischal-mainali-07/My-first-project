@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nischal Mainali — Portfolio (Bootstrap)</title>
+    <meta name="description" content="Portfolio — Bootstrap, SVG skill icons, CSS-styled." />
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --muted: #96a0b5;
+            --accent1: #6ee7b7;
+            --accent2: #60a5fa;
+            --glass: rgba(255, 255, 255, 0.03);
+            --gutter: 50px;
+            --card-padding: 70px;
+            --radius: 12px;
+            --maxw: 1200px;
+            --ff: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--ff);
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(96, 165, 250, 0.04), transparent 8%), radial-gradient(800px 400px at 90% 80%, rgba(110, 231, 183, 0.03), transparent 6%), var(--bg);
+            color: #e6eef8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.45;
+            padding: 20px 0;
+        }
+
+        .site-wrap {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header */
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .brand .logo {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--accent1), var(--accent2));
+            color: #04263b;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .nav-link {
+            color: var(--muted) !important;
+            font-weight: 600;
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--accent2) !important;
+            background: var(--glass);
+        }
+
+        /* Hero + profile */
+        .hero-row {
+            gap: var(--gutter);
+            align-items: flex-start;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+        }
+
+        /* ADDED — swap order: profile card becomes left */
+        .hero-row {
+            flex-direction: row-reverse;
+        }
+
+        .intro-hero {
+            flex: 2;
+            padding: var(--card-padding);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
+            border-radius: var(--radius);
+        }
+
+        .profile-card {
+            flex: 1;
+            padding: var(--card-padding);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: var(--radius);
+            box-shadow: 0 6px 26px rgba(2, 6, 23, 0.55);
+        }
+
+        .avatar {
+            width: 100%;
+            height: 270px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent2), var(--accent1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #04263b;
+            font-weight: 800;
+        }
+
+        h1 {
+            font-size: clamp(26px, 4vw, 40px);
+            margin-bottom: 8px;
+            letter-spacing: 0.6px;
+            line-height: 1.02;
+        }
+
+        p.lead {
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        /* ADDED — make intro text consistent font */
+        .intro-hero p,
+        .intro-hero .lead {
+            font-family: var(--ff) !important;
+        }
+
+        /* per-letter styling */
+        .intro-heading .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(10px) translateZ(0) scale(0.96);
+            transition: transform 320ms cubic-bezier(.2, .85, .25, 1), opacity 220ms ease;
+            will-change: transform, opacity;
+        }
+
+        .intro-heading .letter.pop {
+            opacity: 1;
+            transform: translateZ(30px) scale(1.02) !important;
+            text-shadow: 0 6px 10px rgba(2, 6, 23, 0.55), 0 18px 40px rgba(2, 6, 23, 0.45);
+        }
+
+        .intro-heading .letter.pulse {
+            animation: pulseLetter 2600ms ease-in-out infinite;
+        }
+
+        @keyframes pulseLetter {
+            0% {
+                transform: translateZ(30px) scale(1.02)
+            }
+
+            50% {
+                transform: translateZ(32px) scale(1.026)
+            }
+
+            100% {
+                transform: translateZ(30px) scale(1.02)
+            }
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .skill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 13px;
+            min-height: 36px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            box-shadow: 0 0 15px var(--accent1);
+        }
+
+        .skill-icon {
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 20px;
+            font-size: 20px;
+            transition: transform 320ms cubic-bezier(.2, .85, .25, 1), opacity 220ms ease;
+            will-change: transform, opacity;
+        }
+
+        /* Icon colors */
+        .icon-java {
+            color: #5382a1
+        }
+
+        .icon-cpp {
+            color: #00599C
+        }
+
+        .icon-js {
+            color: #f7df1e
+        }
+
+        .icon-react {
+            color: #61dafb
+        }
+
+        .icon-node {
+            color: #43853d
+        }
+
+        .icon-html {
+            color: #e34f26
+        }
+
+        .icon-css {
+            color: #1572b6
+        }
+
+        .icon-sql {
+            color: #4479a1
+        }
+
+        .icon-dsa {
+            color: #9b59b6
+        }
+
+        /* Soft-skill icon colors */
+        .icon-comm {
+            color: #e83e8c
+        }
+
+        .icon-problem {
+            color: #ffc107
+        }
+
+        .icon-team {
+            color: #6c757d
+        }
+
+        .icon-lead {
+            color: #dc3545
+        }
+
+        .icon-adapt {
+            color: #17a2b8
+        }
+
+        .icon-time {
+            color: #343a40
+        }
+
+        /* PROJECT MARQUEE & CARD ANIMATION */
+        .projects-wrap {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .marquee-container {
+            width: 100%;
+            max-width: 980px;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .marquee {
+            display: flex;
+            gap: 24px;
+            align-items: stretch;
+            transition: transform 420ms cubic-bezier(.2, .9, .25, 1);
+            will-change: transform;
+            padding-bottom: 40px;
+        }
+
+        .project-card {
+            position: relative;
+            padding: 18px;
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            color: var(--muted);
+            min-width: 320px;
+            max-width: 320px;
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.5);
+            transform-origin: center center;
+            transition: transform 300ms cubic-bezier(.2, .9, .25, 1), box-shadow 300ms, filter 300ms, opacity 300ms;
+            overflow: visible;
+            cursor: pointer;
+        }
+
+        /* glow behind each card */
+        .project-card::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 46%;
+            transform: translate(-50%, -50%) scale(0.85);
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.22;
+            filter: blur(38px);
+            transition: opacity 220ms ease, transform 220ms ease, filter 220ms ease;
+            z-index: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(96, 165, 250, 0.32), rgba(110, 231, 183, 0.18) 35%, rgba(96, 165, 250, 0.06) 60%, transparent 70%);
+        }
+
+        .project-card .card-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-card.active {
+            transform: translateY(-10px) scale(1.06);
+            box-shadow: 0 30px 70px rgba(2, 6, 23, 0.75);
+            z-index: 3;
+            opacity: 1;
+        }
+
+        .project-card.active::before {
+            opacity: 0.72;
+            transform: translate(-50%, -50%) scale(1.05);
+            filter: blur(48px);
+        }
+
+        .project-card.dim {
+            transform: scale(0.98);
+            filter: saturate(0.88) contrast(0.95);
+            opacity: 0.92;
+            z-index: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-14px) scale(1.12);
+            box-shadow: 0 40px 100px rgba(2, 6, 23, 0.9);
+            z-index: 6;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.45);
+            filter: blur(62px);
+        }
+
+        /* nav buttons */
+        .marquee-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .marquee-nav.left {
+            left: -8px;
+        }
+
+        .marquee-nav.right {
+            right: -8px;
+        }
+
+        .nav-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            border: none;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+            color: var(--muted);
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+            cursor: pointer;
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms;
+            backdrop-filter: blur(4px);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(2, 6, 23, 0.7);
+            color: #e6eef8;
+            background: linear-gradient(90deg, var(--accent2), var(--accent1));
+        }
+
+        @media (max-width: 900px) {
+            .project-card {
+                min-width: 280px;
+                max-width: 280px;
+            }
+
+            .project-card::before {
+                width: 180px;
+                height: 180px;
+                filter: blur(34px);
+                top: 48%;
+            }
+
+            .marquee-nav.left {
+                left: 4px;
+            }
+
+            .marquee-nav.right {
+                right: 4px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-row {
+                flex-wrap: wrap;
+            }
+
+            .intro-hero {
+                order: 1;
+                width: 100%;
+            }
+
+            .profile-card {
+                order: 2;
+                width: 100%;
+                margin-top: 12px;
+            }
+
+            .project-card {
+                min-width: 240px;
+                max-width: 240px;
+            }
+
+            .marquee {
+                gap: 16px;
+                transition: transform 360ms cubic-bezier(.2, .9, .25, 1);
+            }
+
+            .project-card::before {
+                width: 160px;
+                height: 160px;
+                filter: blur(28px);
+                opacity: 0.22;
+            }
+
+            .nav-btn {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        .chip {
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: transparent;
+            color: var(--muted);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        /* Projects heading bigger */
+        .projects-heading {
+            font-size: clamp(20px, 2.6vw, 28px);
+            margin: 0 0 12px 0;
+            background-color: transparent;
+            color: #e6eef8;
+            font-weight: 800;
+            align-items: center;
+        }
+
+        .projects-sub {
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        /* ADDED — footer vertical alignment */
+        footer .flex-row {
+            flex-direction: column !important;
+            align-items: flex-start;
+        }
+
+        footer .chip {
+            width: fit-content;
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="site-wrap">
+
+        <header>
+            <nav class="d-flex justify-content-between align-items-center mb-3">
+                <div class="brand">
+                    <div class="logo">NM</div>
+                    <div>
+                        <div style="font-weight:700">Nischal Mainali</div>
+                        <small class="muted">Computer Science • Developer • Creator</small>
+                    </div>
+                </div>
+
+                <div>
+                    <ul class="nav">
+                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#skillsSection">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#aboutTop">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+
+            <!-- HERO + PROFILE -->
+            <div class="hero-row">
+
+                <div class="intro-hero">
+                    <h1 class="intro-heading" id="introHeading">Hi its me Nischal Mainali</h1>
+
+                    <!-- ABOUT -->
+                    <div id="aboutTop" style="margin-top:17px; margin-bottom:14px;">
+                        <h5 style="margin:0 0 6px 0; color:#e6eef8;">About</h5>
+
+                        <p class="lead mb-4" style="margin:0 0 10px 0;">
+                            Student at BITS Pilani studying Computer Science.
+                            I enjoy shaping ideas into clean, usable interfaces and building full-stack projects that
+                            feel effortless for the user.
+                            Right now I'm exploring Web Development, DSA, and the process of turning small sparks into
+                            real products.
+                            I like solving problems with clear thinking and practical design.
+                            When I'm not coding, you’ll probably find me playing badminton or reading something
+                            interesting.
+                        </p>
+                    </div>
+
+
+
+                    <div class="d-flex gap-4 mb-4 flex-wrap">
+                        <button id="viewProjects" class="btn btn-sm"
+                            style="background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#04263b; font-weight:700;">View
+                            Projects</button>
+
+                        <a class="btn btn-sm btn-outline-light"
+                            href="https://drive.google.com/file/d/1z4dKpSHSrPBRz55dmjzAYBKfHefUVj26/view?usp=drive_link">
+                            Download CV
+                        </a>
+
+                        <a class="btn btn-sm btn-outline-light"
+                            href="https://drive.google.com/file/d/1z4dKpSHSrPBRz55dmjzAYBKfHefUVj26/view?usp=drive_link">
+                            View Resueme
+                        </a>
+                    </div>
+
+                    <!-- SKILLS -->
+                    <div id="skillsSection">
+                        <div class="d-flex align-items-baseline mb-4">
+                            <h6 style="margin:0;">SKILLS</h6>
+                            <small class="ms-1 muted"></small>
+                        </div>
+
+                        <h6 class="mb-2" style="margin:0;">Tech Stack </h6>
+
+                        <div class="skills mb-5">
+                            <div class="skill-badge" title="Java">
+                                <span class="skill-icon icon-java" aria-hidden>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                                        <path d="M7 9a5 5 0 0 1 10 0v1" stroke="currentColor" stroke-width="1.6"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M7 13c0 3.314 2.686 6 6 6s6-2.686 6-6" stroke="currentColor"
+                                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M9 5c1.333 0 2.5 0 3.5 0" stroke="currentColor" stroke-width="1.6"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </span>
+                                Java
+                            </div>
+
+                            <div class="skill-badge" title="C++">
+                                <span class="skill-icon icon-cpp" aria-hidden>
+                                    <svg viewBox="0 0 40 24" width="20" height="20" fill="none">
+                                        <path d="M14 4c-4.418 0-8 3.582-8 8s3.582 8 8 8" stroke="currentColor"
+                                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M18.5 9h3M20 7v4M24 9h3M26.5 7v4" stroke="currentColor"
+                                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                C++
+                            </div>
+
+                            <div class="skill-badge" title="JavaScript">
+                                <i class="bi bi-filetype-js skill-icon icon-js"></i>
+                                JavaScript
+                            </div>
+
+                            <div class="skill-badge" title="React">
+                                <i class="bi bi-lightning-charge-fill skill-icon icon-react"></i>
+                                React
+                            </div>
+
+                            <div class="skill-badge" title="Node.js">
+                                <i class="bi bi-server skill-icon icon-node"></i>
+                                Node.js
+                            </div>
+
+                            <div class="skill-badge" title="HTML">
+                                <i class="bi bi-filetype-html skill-icon icon-html"></i>
+                                HTML
+                            </div>
+
+                            <div class="skill-badge" title="CSS">
+                                <i class="bi bi-filetype-css skill-icon icon-css"></i>
+                                CSS
+                            </div>
+
+                            <div class="skill-badge" title="SQL">
+                                <i class="bi bi-database skill-icon icon-sql"></i>
+                                SQL
+                            </div>
+
+                            <div class="skill-badge" title="DSA">
+                                <i class="bi bi-gear-fill skill-icon icon-dsa"></i>
+                                DSA
+                            </div>
+                        </div>
+
+                        <h6 class="mb-3" style="margin:0;">Soft Skills</h6>
+
+                        <div class="skills">
+                            <div class="skill-badge" title="Communication">
+                                <i class="bi bi-chat-dots skill-icon icon-comm"></i>
+                                Communication
+                            </div>
+                            <div class="skill-badge" title="Problem Solving">
+                                <i class="bi bi-lightbulb skill-icon icon-problem"></i>
+                                Problem Solving
+                            </div>
+                            <div class="skill-badge" title="Teamwork">
+                                <i class="bi bi-people skill-icon icon-team"></i>
+                                Teamwork
+                            </div>
+                            <div class="skill-badge" title="Leadership">
+                                <i class="bi bi-star skill-icon icon-lead"></i>
+                                Leadership
+                            </div>
+                            <div class="skill-badge" title="Adaptability">
+                                <i class="bi bi-arrow-repeat skill-icon icon-adapt"></i>
+                                Adaptability
+                            </div>
+                            <div class="skill-badge" title="Time Management">
+                                <i class="bi bi-clock skill-icon icon-time"></i>
+                                Time Management
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:18px;">
+                        <div class="projects-heading">Selected projects</div>
+                        <div class="projects-sub">interactive demos and live apps</div>
+                    </div>
+
+                </div>
+
+                <div class="profile-card">
+                    <div class="avatar">
+                        <img src="../portfolio/Images/nischal2.jpg" alt="Profile"
+                            style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+
+                    <h5 class="mt-2 mb-0">Full-stack student</h5>
+                    <small class="muted">Currently pursuing CS at BITS Pilani • Open to internships</small>
+
+                    <div class="d-flex gap-2 flex-wrap mt-2">
+                        <a class="chip" href="#projects">Projects</a>
+                        <a class="chip" href="#contact">Hire me</a>
+                    </div>
+
+                    <div class="mt-2 muted" style="font-size:13px;">
+                        <div><strong>Location</strong> • India</div>
+                        <div class="mt-1"><strong>Contact</strong> • nischallmainali0018@gmail.com</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT CAROUSEL -->
+            <section id="projects" class="projects-wrap">
+                <div class="marquee-container">
+
+                    <div class="marquee-nav left">
+                        <button class="nav-btn" id="prevBtn"><i class="bi bi-chevron-left"
+                                style="font-size:18px"></i></button>
+                    </div>
+
+                    <div class="marquee" id="marquee">
+
+                        <!-- Card 1 -->
+                        <div class="project-card" data-title="Sweet Treats Bakery">
+                            <div class="card-inner">
+                                <div class="avatar" style="height:120px;border-radius:10px;margin-bottom:12px;">
+                                    <span style="font-size:20px;color:#04263b">Bakery</span>
+                                </div>
+                                <h5>Sweet Treats Bakery</h5>
+                                <p class="muted">Responsive bakery UI with cart & filtering. Built with React and
+                                    localStorage persistence.</p>
+                                <div class="d-flex gap-2 mt-2">
+                                    <a class="chip" href="#">Live</a>
+                                    <a class="chip" href="#">Code</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="project-card" data-title="Bank-Seized Platform">
+                            <div class="card-inner">
+                                <div class="avatar" style="height:120px;border-radius:10px;margin-bottom:12px;">
+                                    <span style="font-size:20px;color:#04263b">Bank</span>
+                                </div>
+                                <h5>Bank-Seized Properties</h5>
+                                <p class="muted">Auction UX prototype with KYC flow concept and admin ideas.</p>
+                                <div class="d-flex gap-2 mt-2">
+                                    <a class="chip" href="#">Case Study</a>
+                                    <a class="chip" href="#">Code</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="project-card" data-title="DSA Visualizer">
+                            <div class="card-inner">
+                                <div class="avatar" style="height:120px;border-radius:10px;margin-bottom:12px;">
+                                    <span style="font-size:20px;color:#04263b">DSA</span>
+                                </div>
+                                <h5>DSA Visualizer</h5>
+                                <p class="muted">Interactive visualizations for BFS, sorting, Fibonacci with speed
+                                    controls.</p>
+                                <div class="d-flex gap-2 mt-2">
+                                    <a class="chip" href="#">Demo</a>
+                                    <a class="chip" href="#">Repo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="project-card" data-title="Prototypes & Tools">
+                            <div class="card-inner">
+                                <div class="avatar" style="height:120px;border-radius:10px;margin-bottom:12px;">
+                                    <span style="font-size:20px;color:#04263b">Tools</span>
+                                </div>
+                                <h5>Prototypes & Tools</h5>
+                                <p class="muted">Small UIs and experiments to test interactions & flows quickly.</p>
+                                <div class="d-flex gap-2 mt-2">
+                                    <a class="chip" href="#">Collection</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cloned first card for loop -->
+                        <div class="project-card" data-title="Sweet Treats Bakery (dup)">
+                            <div class="card-inner">
+                                <div class="avatar" style="height:120px;border-radius:10px;margin-bottom:12px;">
+                                    <span style="font-size:20px;color:#04263b">Bakery</span>
+                                </div>
+                                <h5>Sweet Treats Bakery</h5>
+                                <p class="muted">Responsive bakery UI with cart & filtering. Built with React and
+                                    localStorage persistence.</p>
+                                <div class="d-flex gap-2 mt-2">
+                                    <a class="chip" href="#">Live</a>
+                                    <a class="chip" href="#">Code</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="marquee-nav right">
+                        <button class="nav-btn" id="nextBtn"><i class="bi bi-chevron-right"
+                                style="font-size:18px"></i></button>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- CONTACT -->
+            <section id="contact" class="mt-5">
+                <div class="d-flex align-items-baseline mb-2"></div>
+            </section>
+
+
+        </main>
+
+        <footer class="mt-5">
+
+            <div class="row g-3">
+                <div class="col-12">
+                    <div class="contact-card">
+
+                        <h6 class="mb-4" style="font-size: 1.2rem; text-align: center;">Get in touch</h6>
+                        <p class="muted mb-4" style="font-size: 1rem; text-align: center;">Feel free to reach out for
+                            collaborations, projects, or just to say hi!</p>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="d-flex flex-row flex-wrap gap-3">
+                                    <button class="chip" onclick="openMail()"><i class="bi bi-envelope"></i> Email
+                                        me</button>
+                                    <a class="chip" href="https://x.com/nmainali007"><i class="bi bi-twitter"></i>
+                                        Twitter</a>
+                                    <a class="chip" href="#"><i class="bi bi-reddit"></i> Reddit</a>
+                                    <a class="chip" href="https://www.linkedin.com/in/nischal-mainali-564854350/"><i
+                                            class="bi bi-linkedin"></i> LinkedIn</a>
+                                    <a class="chip" href="https://github.com/nischal-mainali-07"><i
+                                            class="bi bi-github"></i> GitHub</a>
+                                    <a class="chip"
+                                        href="https://www.instagram.com/nischal_mainali_life_?igsh=enJuenF3ZGZnNmtn"><i
+                                            class="bi bi-instagram"></i> Instagram</a>
+                                    <div class="mb-7">Built with ❤️ • Nischal Mainali</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mt-3 mt-md-0">
+                                <div class="muted" style="font-size: 0.9rem;">
+                                    <div><strong>Email</strong> • nischallmainali0018@gmail.com</div>
+                                    <div class="mt-2"><strong>Location</strong> • India</div>
+                                    <div class="mt-2"><strong>Studying</strong> • BITS Pilani — Computer Science</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </footer>
+
+    </div>
+
+    <script>
+
+        // per-letter split
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const heading = document.getElementById('introHeading');
+
+            if (heading) {
+                const text = heading.textContent || heading.innerText || '';
+                heading.textContent = '';
+
+                Array.from(text).forEach(ch => {
+                    const span = document.createElement('span');
+                    span.className = 'letter';
+                    span.textContent = (ch === ' ') ? '\u00A0' : ch;
+                    heading.appendChild(span);
+                });
+
+                function revealLetters() {
+                    const letters = heading.querySelectorAll('.letter');
+                    const baseDelay = 70;
+
+                    letters.forEach((el, idx) => {
+                        setTimeout(() => {
+                            el.classList.add('pop');
+                            if (idx >= letters.length - 2) el.classList.add('pulse');
+                        }, idx * baseDelay);
+                    });
+                }
+
+                const rect = heading.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0)
+                    setTimeout(revealLetters, 60);
+                else {
+                    const obs = new IntersectionObserver((entries, ob) => {
+                        entries.forEach(en => {
+                            if (en.isIntersecting) {
+                                revealLetters();
+                                ob.disconnect();
+                            }
+                        });
+                    }, { threshold: 0.15 });
+
+                    obs.observe(heading);
+                }
+            }
+
+            // marquee
+            const marquee = document.getElementById('marquee');
+            const container = document.querySelector('.marquee-container');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            let cards = Array.from(document.querySelectorAll('.project-card'));
+            let index = 0;
+            let timer = null;
+            let paused = false;
+            let userPausedUntil = 0;
+
+            function getGap() {
+                return parseFloat(getComputedStyle(marquee).gap) || 24;
+            }
+
+            function computeTranslateFor(i) {
+                const cRect = container.getBoundingClientRect();
+                const cardRect = cards[0].getBoundingClientRect();
+                const cardWidth = cardRect.width;
+                const gap = getGap();
+                const centerOffset = (cRect.width / 2) - (cardWidth / 2);
+                return (cardWidth + gap) * i - centerOffset;
+            }
+
+            function updateCardStates() {
+                cards.forEach(c => c.classList.remove('active', 'dim'));
+                const activeIndex = ((index % cards.length) + cards.length) % cards.length;
+                cards[activeIndex].classList.add('active');
+                cards.forEach((c, i) => { if (i !== activeIndex) c.classList.add('dim'); });
+            }
+
+            function animateToIndex(i, speedMs = 320) {
+                const translateX = computeTranslateFor(i);
+                marquee.style.transition = `transform ${speedMs}ms cubic-bezier(.2,.9,.25,1)`;
+                marquee.style.transform = `translateX(-${translateX}px)`;
+                setTimeout(updateCardStates, Math.max(80, speedMs / 6));
+            }
+
+            function moveNext() {
+                index = (index + 1);
+                animateToIndex(index, 260);
+            }
+
+            function movePrev() {
+                index = (index - 1);
+                animateToIndex(index, 260);
+            }
+
+            function startAuto(delay = 1200) {
+                if (timer) clearInterval(timer);
+                timer = setInterval(() => {
+                    if (!paused && Date.now() > userPausedUntil) moveNext();
+                }, delay);
+            }
+
+            // ADDED — infinite loop logic
+            marquee.addEventListener("transitionend", () => {
+                const active = ((index % cards.length) + cards.length) % cards.length;
+                const last = cards.length - 1;
+
+                if (active === last) {
+                    marquee.style.transition = "none";
+                    index = 0;
+                    const x = computeTranslateFor(0);
+                    marquee.style.transform = `translateX(-${x}px)`;
+                    setTimeout(() => {
+                        marquee.style.transition = "transform 320ms cubic-bezier(.2,.9,.25,1)";
+                    }, 20);
+                }
+            });
+
+            container.addEventListener('mouseenter', () => { paused = true; });
+            container.addEventListener('mouseleave', () => { paused = false; });
+
+            nextBtn.addEventListener('click', () => {
+                paused = true;
+                userPausedUntil = Date.now() + 1200;
+                moveNext();
+                setTimeout(() => { paused = false }, 1200);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                paused = true;
+                userPausedUntil = Date.now() + 1200;
+                movePrev();
+                setTimeout(() => { paused = false }, 1200);
+            });
+
+            if (marquee && cards.length) {
+                setTimeout(() => {
+                    animateToIndex(index, 220);
+                    startAuto(1200);
+                }, 140);
+            }
+
+            const viewBtn = document.getElementById('viewProjects');
+            if (viewBtn)
+                viewBtn.addEventListener('click', () => {
+                    document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+                });
+
+        });
+
+        function openMail() {
+            const subject = encodeURIComponent("Hello from portfolio");
+            const body = encodeURIComponent("Hi Nischal, I saw your portfolio and would like to connect.");
+            window.location.href = `mailto:nischallmainali0018@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+    </script>
+
+</body>
+
+</html>
