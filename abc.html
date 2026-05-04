@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nischal Mainali portfolio - Computer Science student and developer.">
+    <title>Nischal Mainali | Portfolio</title>
+    <style>
+        :root {
+            --bg: #08090b;
+            --panel: #111318;
+            --text: #f4efe7;
+            --muted: #a99f91;
+            --line: rgba(244, 239, 231, .12);
+            --gold: #d6b56d;
+            --gold-soft: #f0d99b;
+            --teal: #86aaa3;
+            --shadow: 0 24px 70px rgba(0, 0, 0, .34);
+            --max: 1180px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            background:
+                linear-gradient(135deg, rgba(214, 181, 109, .08), transparent 30%),
+                linear-gradient(315deg, rgba(134, 170, 163, .08), transparent 28%),
+                var(--bg);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(244, 239, 231, .035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(244, 239, 231, .025) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .7), transparent 80%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .wrap {
+            width: min(var(--max), calc(100% - 36px));
+            margin: 0 auto;
+        }
+
+        .nav {
+            min-height: 86px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            letter-spacing: .02em;
+        }
+
+        .logo-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(214, 181, 109, .6);
+            color: var(--gold-soft);
+            background: rgba(214, 181, 109, .08);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .nav-links a {
+            transition: color .18s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-soft);
+        }
+
+        .hero {
+            min-height: calc(100vh - 86px);
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            align-items: center;
+            gap: 54px;
+            padding: 54px 0 78px;
+            position: relative;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            color: var(--gold-soft);
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 38px;
+            height: 1px;
+            background: var(--gold-soft);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(56px, 8vw, 110px);
+            line-height: .86;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(244, 239, 231, .72);
+        }
+
+        .hero-subtitle {
+            margin: 22px 0 0;
+            max-width: 620px;
+            color: var(--muted);
+            font-size: clamp(18px, 2vw, 25px);
+            line-height: 1.35;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .hero-desc {
+            max-width: 640px;
+            margin: 20px 0 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 18px;
+            border: 1px solid var(--line);
+            background: rgba(244, 239, 231, .045);
+            color: var(--text);
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            transition: transform .18s ease, border-color .18s ease, background .18s ease;
+        }
+
+        .btn.primary {
+            color: #15110a;
+            background: var(--gold-soft);
+            border-color: var(--gold-soft);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            border-color: rgba(214, 181, 109, .55);
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 560px;
+            display: grid;
+            place-items: center;
+        }
+
+        .portrait {
+            width: min(430px, 100%);
+            aspect-ratio: 4 / 5;
+            border: 1px solid rgba(244, 239, 231, .16);
+            background: var(--panel);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portrait::before {
+            content: "";
+            position: absolute;
+            inset: 16px;
+            border: 1px solid rgba(214, 181, 109, .5);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            filter: grayscale(.12) contrast(1.05);
+        }
+
+        .decor {
+            position: absolute;
+            border: 1px solid rgba(214, 181, 109, .48);
+            background: rgba(214, 181, 109, .06);
+            pointer-events: none;
+        }
+
+        .decor.one {
+            width: 120px;
+            height: 120px;
+            right: 20px;
+            top: 54px;
+        }
+
+        .decor.two {
+            width: 72px;
+            height: 72px;
+            left: 26px;
+            bottom: 84px;
+            border-color: rgba(134, 170, 163, .5);
+        }
+
+        .decor.three {
+            width: 14px;
+            height: 180px;
+            right: 88px;
+            bottom: 16px;
+            background: var(--gold);
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: -38px;
+            position: relative;
+            z-index: 4;
+        }
+
+        .stat,
+        .section-card,
+        .experience-card,
+        .project-card,
+        .stack-item,
+        .contact-card {
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(244, 239, 231, .07), rgba(244, 239, 231, .03));
+            box-shadow: 0 14px 44px rgba(0, 0, 0, .22);
+        }
+
+        .stat {
+            padding: 18px;
+            min-height: 104px;
+        }
+
+        .stat b {
+            display: block;
+            font-size: 34px;
+            line-height: 1;
+        }
+
+        .stat span {
+            display: block;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 34px;
+        }
+
+        .section-title .ghost {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(244, 239, 231, .08);
+            font-size: clamp(52px, 9vw, 132px);
+            line-height: .8;
+            font-weight: 950;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .section-title h2 {
+            margin: -24px 0 0;
+            font-size: clamp(32px, 5vw, 62px);
+            line-height: .9;
+            text-transform: uppercase;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .section-card {
+            padding: 28px;
+        }
+
+        .section-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .section-card strong {
+            color: var(--text);
+        }
+
+        .mini-list {
+            display: grid;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .mini-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--line);
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .mini-list b {
+            color: var(--gold-soft);
+        }
+
+        .experience-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .experience-card {
+            display: grid;
+            grid-template-columns: 92px minmax(0, 1fr);
+            gap: 22px;
+            padding: 24px;
+            align-items: start;
+        }
+
+        .company-mark {
+            width: 76px;
+            height: 76px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(214, 181, 109, .45);
+            color: var(--gold-soft);
+            background: rgba(214, 181, 109, .075);
+            font-weight: 950;
+            font-size: 20px;
+        }
+
+        .experience-card h3,
+        .project-card h3 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .role {
+            margin: 6px 0 0;
+            color: var(--gold-soft);
+            font-weight: 900;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 14px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .experience-card p,
+        .project-card p {
+            margin: 16px 0 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 0 10px;
+            border: 1px solid var(--line);
+            color: #d2c8b8;
+            background: rgba(244, 239, 231, .04);
+            font-size: 12px;
+            font-weight: 850;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .project-card {
+            min-height: 440px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .project-screen {
+            height: 190px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 22px;
+            border: 1px solid rgba(244, 239, 231, .12);
+            background:
+                linear-gradient(135deg, rgba(214, 181, 109, .18), transparent 42%),
+                linear-gradient(315deg, rgba(134, 170, 163, .14), transparent 42%),
+                #111318;
+            color: var(--gold-soft);
+            font-size: 22px;
+            font-weight: 950;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .project-link {
+            margin-top: 20px;
+            color: var(--gold-soft);
+            font-size: 13px;
+            font-weight: 950;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .stack-item {
+            min-height: 110px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .stack-item b {
+            font-size: 20px;
+        }
+
+        .stack-item span {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .contact-band {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .contact-card {
+            padding: 28px;
+        }
+
+        .contact-card h3 {
+            margin: 0;
+            font-size: clamp(32px, 5vw, 58px);
+            line-height: .95;
+            text-transform: uppercase;
+        }
+
+        .contact-card p {
+            margin: 18px 0 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .socials {
+            display: grid;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .socials a {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--line);
+            color: var(--muted);
+            font-weight: 850;
+        }
+
+        .socials a span:first-child {
+            color: var(--text);
+        }
+
+        footer {
+            padding: 34px 0;
+            color: var(--muted);
+            border-top: 1px solid var(--line);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 930px) {
+
+            .hero,
+            .about-grid,
+            .contact-band {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+                gap: 28px;
+            }
+
+            .hero-visual {
+                min-height: auto;
+            }
+
+            .quick-stats,
+            .stack-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .wrap {
+                width: min(var(--max), calc(100% - 24px));
+            }
+
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 16px 0;
+            }
+
+            .nav-links {
+                width: 100%;
+                overflow-x: auto;
+                gap: 18px;
+                padding-bottom: 4px;
+            }
+
+            h1 {
+                font-size: clamp(46px, 15vw, 72px);
+            }
+
+            .hero {
+                padding-top: 42px;
+            }
+
+            .quick-stats,
+            .projects-grid,
+            .stack-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-card {
+                grid-template-columns: 1fr;
+            }
+
+            .decor {
+                display: none;
+            }
+
+            section {
+                padding: 66px 0;
+            }
+
+            .section-title .ghost {
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="wrap">
+        <nav class="nav" aria-label="Main navigation">
+            <a class="logo" href="#home">
+                <span class="logo-mark">NM</span>
+                <span>Nischal Mainali</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#stack">Tech Stack</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="home">
+        <section class="wrap hero">
+            <div class="hero-copy">
+                <div class="eyebrow">Hi, I'm Nischal</div>
+                <h1>Coder & <span>Creator</span></h1>
+                <p class="hero-subtitle">Turning coursework, curiosity, and clean interfaces into real projects.</p>
+                <p class="hero-desc">
+                    Computer Science student at BITS Pilani, focused on web development, data structures, Linux
+                    fundamentals, and practical product thinking. I like building smooth user experiences while keeping
+                    the logic behind them simple and reliable.
+                </p>
+                <div class="actions">
+                    <a class="btn primary" href="#contact">Contact Me</a>
+                    <a class="btn" href="#projects">View Projects</a>
+                    <a class="btn"
+                        href="https://drive.google.com/file/d/1z4dKpSHSrPBRz55dmjzAYBKfHefUVj26/view?usp=drive_link"
+                        target="_blank" rel="noreferrer">Resume</a>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-label="Profile image">
+                <div class="decor one"></div>
+                <div class="decor two"></div>
+                <div class="decor three"></div>
+                <div class="portrait">
+                    <img src="./nischal2.jpg" alt="Portrait of Nischal Mainali">
+                </div>
+            </div>
+        </section>
+
+        <div class="wrap quick-stats" aria-label="Profile highlights">
+            <div class="stat"><b>8.1</b><span>Current CGPA at BITS Pilani</span></div>
+            <div class="stat"><b>2024-2027</b><span>B.Sc. Computer Science timeline</span></div>
+            <div class="stat"><b>2023-2027</b><span>B.Tech (PW(IOI) Residential program)</span></div>
+            <div class="stat"><b>5+</b><span>Personal web projects shipped</span></div>
+            <div class="stat"><b>4</b><span>Core communities and events</span></div>
+        </div>
+
+        <section id="about" class="wrap">
+            <div class="section-title">
+                <span class="ghost">About Me</span>
+                <h2>About Me</h2>
+            </div>
+            <div class="about-grid">
+                <div class="section-card">
+                    <p>
+                        I'm a <strong>Computer Science student at Birla Institute of Technology and Science,
+                            Pilani</strong>. I enjoy transforming ideas into usable websites, learning by building, and
+                        improving my problem-solving through DSA and coursework projects.
+                        <br><br>
+                        Beyond code, I care about presentation, teamwork, and coordination. Public speaking, club work,
+                        and event volunteering have helped me become more confident in communicating ideas clearly.
+                    </p>
+                </div>
+                <div class="section-card">
+                    <ul class="mini-list">
+                        <li><span>Current Education</span><b>BITS Pilani</b></li>
+                        <li><span>Program</span><b>B.Sc. Computer Science</b></li>
+                        <li><span>Program</span><b>B.Tech (PW(IOI) Residential program)</b></li>
+                        <li><span>Core Strength</span><b>Web + DSA</b></li>
+                        <li><span>Interests</span><b>Reading, Chess, Badminton</b></li>
+                        <li><span>Soft Skills</span><b>Communication, Adaptability</b></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="wrap">
+            <div class="section-title">
+                <span class="ghost">Work Experience</span>
+                <h2>Experience</h2>
+            </div>
+            <div class="experience-list">
+                <article class="experience-card">
+                    <div class="company-mark">CS</div>
+                    <div>
+                        <h3>Internship@PWSkills</h3>
+                        <div class="role">Business Operation Intern</div>
+                        <div class="meta"><span> Present</span><span>PW(IOI)
+                                Residential Program</span></div>
+                        </span></div>
+                        <p>Cross-functional collaboration and process optimization, Event Hosting and Management.</p>
+                        <div class="tags">
+                            <span class="tag">Communication</span><span class="tag">Leadership</span><span class="tag">Thinker</span><span
+                                class="tag">Innovation</span><span class="tag">Management</span>
+                        </div>
+                    <div>
+                        <h3>Coursework-Based Projects</h3>
+                        <div class="role">B.Sc. Computer Science</div>
+                        <div class="meta"><span>2025 - Present</span><span>BITS Pilani</span></div>
+                        <p>Developed small programs in C, C++, and Java, learned Linux command-line usage, and improved
+                            algorithmic thinking through programming assignments.</p>
+                        <div class="tags">
+                            <span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span><span
+                                class="tag">Linux</span><span class="tag">Algorithms</span>
+                        </div>
+
+                    </div>
+                </article>
+
+                <article class="experience-card">
+                    <div class="company-mark">PW</div>
+                    <div>
+                        <h3>Coursework-Based Projects</h3>
+                        <div class="role">Physics Wallah Institute of Innovation</div>
+                        <div class="meta"><span>2024 - Present</span><span>Residential Program</span></div>
+                        <p>Practiced public speaking and presentations, implemented stacks, queues, and linked lists,
+                            and built basic websites as part of coursework.</p>
+                        <div class="tags">
+                            <span class="tag">Public Speaking</span><span class="tag">Data Structures</span><span
+                                class="tag">HTML</span><span class="tag">CSS</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="experience-card">
+                    <div class="company-mark">BS</div>
+                    <div>
+                        <h3>Battleground Startup Event</h3>
+                        <div class="role">Event Volunteer</div>
+                        <div class="meta"><span>May 23-24, 2025</span><span>Coordination</span></div>
+                        <p>Volunteered in receiving judges and investors, supported event coordination, and assisted
+                            with team management during the startup event.</p>
+                        <div class="tags">
+                            <span class="tag">Coordination</span><span class="tag">Teamwork</span><span
+                                class="tag">Communication</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" class="wrap">
+            <div class="section-title">
+                <span class="ghost">Projects</span>
+                <h2>Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div>
+                        <div class="project-screen">Bakery</div>
+                        <h3>Sweet Treats Bakery Website</h3>
+                        <p>A fully responsive bakery website with a polished frontend and Google Sheets integration for
+                            backend form responses.</p>
+                        <div class="tags">
+                            <span class="tag">HTML</span><span class="tag">CSS</span><span
+                                class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">Google
+                                Sheets</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="#contact">Discuss Project</a>
+                </article>
+
+                <article class="project-card">
+                    <div>
+                        <div class="project-screen">Portfolio</div>
+                        <h3>Personal Portfolio Website</h3>
+                        <p>A portfolio built from scratch to present education, technical skills, achievements, social
+                            links, and project work in one place.</p>
+                        <div class="tags">
+                            <span class="tag">Frontend</span><span class="tag">Responsive UI</span><span
+                                class="tag">JavaScript</span><span class="tag">Design</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="#home">View This Site</a>
+                </article>
+
+                <article class="project-card">
+                    <div>
+                        <div class="project-screen">DSA</div>
+                        <h3>Data Structure Practice</h3>
+                        <p>Implemented foundational data structures such as stacks, queues, and linked lists while
+                            strengthening problem-solving fundamentals.</p>
+                        <div class="tags">
+                            <span class="tag">C++</span><span class="tag">Java</span><span
+                                class="tag">Stacks</span><span class="tag">Queues</span><span class="tag">Linked
+                                Lists</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="#stack">See Skills</a>
+                </article>
+
+                <article class="project-card">
+                    <div>
+                        <div class="project-screen">Network</div>
+                        <h3>Interactive Networking Pages</h3>
+                        <p>Worked with interactive networking/problem-solving pages around DNS and end-of-chapter
+                            learning flows from the portfolio files.</p>
+                        <div class="tags">
+                            <span class="tag">Networking</span><span class="tag">JavaScript</span><span
+                                class="tag">Learning Tools</span><span class="tag">Problem Solving</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="#experience">Explore Experience</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="stack" class="wrap">
+            <div class="section-title">
+                <span class="ghost">Tech Stack</span>
+                <h2>Tech Stack</h2>
+            </div>
+            <div class="stack-grid">
+                <div class="stack-item"><b>C</b><span>Programming fundamentals and coursework practice.</span></div>
+                <div class="stack-item"><b>C++</b><span>DSA, problem solving, and structured logic.</span></div>
+                <div class="stack-item"><b>Java</b><span>Assignments, OOP basics, and core programming.</span></div>
+                <div class="stack-item"><b>HTML</b><span>Semantic web page structure.</span></div>
+                <div class="stack-item"><b>CSS</b><span>Responsive layouts and visual polish.</span></div>
+                <div class="stack-item"><b>JavaScript</b><span>Interactive frontend behavior.</span></div>
+                <div class="stack-item"><b>React</b><span>Framework learning and UI components.</span></div>
+                <div class="stack-item"><b>SQL / MySQL</b><span>Database fundamentals and queries.</span></div>
+            </div>
+        </section>
+
+        <section id="contact" class="wrap">
+            <div class="section-title">
+                <span class="ghost">Contact</span>
+                <h2>Contact</h2>
+            </div>
+            <div class="contact-band">
+                <div class="contact-card">
+                    <h3>Let's create something good together.</h3>
+                    <p>Open to internship opportunities, collaborations, coursework projects, and conversations around
+                        building better web experiences.</p>
+                    <div class="actions">
+                        <a class="btn primary" href="mailto:nischalmainali0018@gmail.com">Email Me</a>
+                        <a class="btn" href="tel:+918798198105">Call Me</a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="socials">
+                        <a
+                            href="mailto:nischalmainali0018@gmail.com"><span>Email</span><span>nischalmainali0018@gmail.com</span></a>
+                        <a href="https://github.com/nischal-mainali-07" target="_blank"
+                            rel="noreferrer"><span>GitHub</span><span>nischal-mainali-07</span></a>
+                        <a href="https://www.linkedin.com/in/nischal-mainali-564854350/" target="_blank"
+                            rel="noreferrer"><span>LinkedIn</span><span>Nischal Mainali</span></a>
+                        <a href="https://x.com/nmainali007" target="_blank" rel="noreferrer"><span>X /
+                                Twitter</span><span>@nmainali007</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">&copy; 2026 Nischal Mainali. Built with HTML, CSS, and JavaScript.</div>
+    </footer>
+</body>
+
+</html>
